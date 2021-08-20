@@ -1,12 +1,12 @@
-import React from 'react';
-
-const BillCard = ({ bill }) => {
+import React from "react";
+// Dissappointed in the lack of Zookeeper Bill Murray from Osmosis Jones, my favorite of his roles!
+const BillCard = ({ bill, handleClick, kickoffBill }) => {
   return (
     <div className="ui column">
       <div
         className="ui card"
         key={bill.id}
-        onClick={() => console.log('add code to connect event listener')}
+        onClick={() => handleClick(bill.id)}
       >
         <div className="image">
           <img alt={bill.name} src={bill.photo} />
@@ -34,9 +34,10 @@ const BillCard = ({ bill }) => {
             <div className="ui center aligned segment basic">
               <button
                 className="ui mini blue button"
-                onClick={() =>
-                  console.log('add code to connect event listener')
-                }
+                onClick={(e) => {
+                  e.stopPropagation();
+                  kickoffBill(bill.id)
+                }}
               >
                 FIRE
               </button>
